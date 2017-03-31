@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/emailvalidation.js"></script>
+
+	 <title>Sign In Form</title>
+	 	<script>
+	
+$(document).ready(function(e) {
+$('#btnValidate').click(function () { 
+var sEmail = $('#txtEmail').val();
+// Checking Empty Fields
+if ($.trim(sEmail).length == 0 || $("#psw").val()=="" ) {
+alert('All fields are mandatory');
+e.preventDefault();
+}
+if (validateEmail(sEmail)) {
+alert('Information is correct you can proceed!!');
+setTimeout(function() {window.location = "Ecommerce.html" });
+}
+else {
+alert('Invalid Email Address');
+e.preventDefault();
+}
+
+});
+});
+function validateEmail(sEmail) {
+var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+if (filter.test(sEmail)) {
+return true;
+}
+else {
+return false;
+}
+}
+
+$(document).ready(function(v) {
+$("button").click(function(){
+
+$.getJSON("json_data.json",function(obj){
+$.each(obj,function(key, value){
+$("ul").append("<li>"+value.a +"</li>");
+});
+});
+});
+});
+</script>
+	 <style>
+	 #container{
+	  margin: auto;
+    width: 20%;
+    border: 3px solid #0066ff;
+    padding: 10px;
+	 
+	 }
+	 .body1{
+	 background-color: #bfbfbf;
+	 }
+	 </style>
+ </head>
+
+<body class="body1">
+<div id = "container">
+<div id="signIn">
+<img src = "Images/login.jpg" alt ="Trendz">
+<form method="post" action="#">	
+<label>Email Address: </label>
+<input type='text' name="ename" id='txtEmail' placeholder='Valid Email Address'/>
+<br>
+<label>Password:</label><br>
+<input type="password" name="psw" id="psw" ><br/>
+<a href="#">Forgot password?</a>
+<ul></ul>
+<button type="submit" id='btnValidate' name="submit" value="formSubmit" >Submit</button>
+<p> New To Trendz?</p>
+<button type="submit"   value="Submit"><a href="creatAccount.html" target="_self">Create an Account</a></button>
+<p>By signing in you are agreeing to our Conditions of Use and Sale and our Privacy Notice.</p>
+
+</form>
+</div>
+</div>
+</body>
+
+</html>
+
+
+
